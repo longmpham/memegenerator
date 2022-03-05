@@ -1,0 +1,19 @@
+.navbar {
+    background-color: darkblue;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    color: white;
+}
+
+.navbar-title {
+    margin-right: auto;
+    margin-left: 10px;
+    
+}
+.navbar-author {
+    font-size: 1em;
+    margin-right: 10px;
+}

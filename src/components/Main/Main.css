@@ -1,0 +1,45 @@
+.main-input-area {
+    background-color: purple;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.main-input {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 9px;
+}
+
+.main-button-area {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.main-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: darkcyan;
+    border-radius: 9px;
+    color: white;
+}
+
+.main-image-area {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.main-image {
+    padding: 30px;
+    display: flex;
+    margin: 10px;
+    height: auto;
+    width: 80%;
+}
