@@ -35,6 +35,10 @@
     display: flex;
     align-items: center;
     justify-content: center; 
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: 3em;
 }
 .main-image {
     padding: 30px;
@@ -42,4 +46,14 @@
     margin: 10px;
     height: auto;
     width: 80%;
+}
+
+.main-image-top-text {
+    position: absolute;
+    top: 30px;
+}
+
+.main-image-bottom-text {
+    position: absolute;
+    bottom: 30px;
 }
