@@ -1,3 +1,12 @@
+# Lets create a Meme Generator. 
+- simple text box to enter top
+- simple text box to enter bottom
+- image below is a pulled random meme image
+- save or publish generated meme?
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
