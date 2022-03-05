@@ -3,10 +3,9 @@ import "./Main.css";
 import memesData from "../../memesData";
 
 const Main = () => {
-
-  const [url, setUrl] = useState('https://i.imgflip.com/4acd7j.png');
-  const [topText, setTopText] = useState('TOP TEXT');
-  const [bottomText, setBottomText] = useState('BOTTOM TEXT');
+  const [url, setUrl] = useState("https://i.imgflip.com/4acd7j.png");
+  const [topText, setTopText] = useState("TOP TEXT");
+  const [bottomText, setBottomText] = useState("BOTTOM TEXT");
 
   const getImage = () => {
     // create a randomizer
@@ -14,19 +13,19 @@ const Main = () => {
     const randomGeneratedNumber = Math.floor(Math.random() * memesArray.length);
 
     // get url of image(RNG)
-    const url = memesArray[randomGeneratedNumber].url
+    const url = memesArray[randomGeneratedNumber].url;
 
     // set url
-    setUrl(url)
+    setUrl(url);
     // console.log(url)
   };
 
   const handleChangeTopText = (event) => {
-    setTopText(event.target.value)
-  }
+    setTopText(event.target.value);
+  };
   const handleChangeBottomText = (event) => {
-    setBottomText(event.target.value)
-  }
+    setBottomText(event.target.value);
+  };
 
   return (
     <>
@@ -58,12 +57,7 @@ const Main = () => {
       {/* PICTURE GENERATOR */}
       <div className="main-image-area">
         <h3 className="main-image-top-text">{topText}</h3>
-        <img
-          className="main-image"
-          src={
-            url
-          }
-        />
+        <img className="main-image" src={url} />
         <h3 className="main-image-bottom-text">{bottomText}</h3>
       </div>
     </>

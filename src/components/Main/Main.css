@@ -51,9 +51,11 @@
 .main-image-top-text {
     position: absolute;
     top: 30px;
+    width: 70%;
 }
 
 .main-image-bottom-text {
     position: absolute;
     bottom: 30px;
+    width: 70%;
 }
