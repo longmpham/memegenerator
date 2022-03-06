@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Main.css";
+import html2canvas from 'html2canvas';
 
 const Main = () => {
+
+  const saveImageRef = React.useRef()
   const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState({
     topText: "top text",
@@ -30,6 +33,28 @@ const Main = () => {
     };
     fetchData();
   }, []);
+
+  const handleSaveImage = async () => {
+    console.log('save image')
+    const element = saveImageRef.current
+    const canvas = await html2canvas(element, {
+      allowTaint: true,
+      useCORS: true
+    })
+    const data = canvas.toDataURL('image/png')
+    const link = document.createElement('a')
+
+    if (typeof link.download === 'string') {
+      link.href = data;
+      link.download = 'image.png';
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
+  }
 
   // console.log(memesArrFromApi);
 
@@ -65,6 +90,8 @@ const Main = () => {
     console.log("submit");
   };
 
+
+
   return (
     <>
       {/* text input for top and bottom */}
@@ -87,15 +114,13 @@ const Main = () => {
         </div>
         {/* BUTTON AREA */}
         <div className="main-button-area">
-          <button className="main-button" type="submit" onClick={getImage}>
-            SELECT NEW MEME
-          </button>
-          {/* <button className='main-button' type='text' onClick={() => alert('submit')}>SUBMIT MEME</button> */}
+          <button className="main-button" type="submit" onClick={getImage}>SELECT NEW MEME</button>
+          <button className='main-button' type='button' onClick={handleSaveImage}>SAVE MEME</button>
         </div>
       </form>
       {/* PICTURE GENERATOR */}
       {loading && <h3>LOADING IMAGES</h3> }
-      <div className="main-image-area">
+      <div ref={saveImageRef} className="main-image-area">
         <h3 className="main-image-top-text">{formData.topText}</h3>
         {/* <h3 className="main-image-top-text">{topText}</h3> */}
         <img className="main-image" src={formData.url} />
