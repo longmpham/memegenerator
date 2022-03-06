@@ -38,7 +38,7 @@
     position: relative;
     text-align: center;
     color: white;
-    font-size: 3em;
+    font-size: 2.5em;
 }
 .main-image {
     padding: 30px;
@@ -52,10 +52,15 @@
     position: absolute;
     top: 30px;
     width: 70%;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 .main-image-bottom-text {
     position: absolute;
     bottom: 30px;
     width: 70%;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    
 }

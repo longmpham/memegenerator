@@ -1,89 +1,69 @@
 import React, { useState, useEffect } from "react";
 import "./Main.css";
-import memesData from "../../memesData";
 
 const Main = () => {
-
-  // const [url, setUrl] = useState("https://i.imgflip.com/4acd7j.png");
-  // const [topText, setTopText] = useState("TOP TEXT");
-  // const [bottomText, setBottomText] = useState("BOTTOM TEXT");
+  const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState({
     topText: "top text",
     bottomText: "bottom text",
-    url: "https://i.imgflip.com/4acd7j.png"
+    url: "https://i.imgflip.com/4acd7j.png",
   });
-  const [memesArr, setMemesArr] = React.useState(memesData)
+  const [memesArrFromApi, setMemesArrFromApi] = React.useState([]);
 
-  // const [loading, setLoading] = useState(false);
-  // const [memes, setMemes] = useState('');
+  // load the images from imgflip
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     fetch("https://api.imgflip.com/get_memes")
+  //       .then((response) => response.json())
+  //       .then((data) => setMemesArrFromApi(data.data.memes));
+  //   };
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true)
+      const response = await fetch("https://api.imgflip.com/get_memes")
+      const data = await response.json()
+      setMemesArrFromApi(data.data.memes);
+      setLoading(false)
+    };
+    fetchData();
+  }, []);
+
+  // console.log(memesArrFromApi);
 
   const getImage = () => {
     // create a randomizer
-    const memesArray = memesArr.data.memes
+    const memesArray = memesArrFromApi;
     const randomGeneratedNumber = Math.floor(Math.random() * memesArray.length);
 
     // get url of image(rng)
     const url = memesArray[randomGeneratedNumber].url;
 
     // set url of new image!
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
       url: url,
-    }))
+    }));
     // console.log(url)
-
-    // now update the text fields to be blank
   };
 
-
-
-  // useEffect(() => {
-
-  //   const fetchData = async () => {
-
-  //     // 1. loading screen
-  //     // 2. get promise (await for data)
-  //     // 3. setdata and/or log
-  //     // 4. set loading false
-  //     // 5. call function
-      
-  //     setLoading(true);
-
-  //     const response = await fetch(memesData);
-  //     console.log(response)
-  //     const memesD = await response.text();
-
-  //     console.log(memesD);
-  //     setMemes(memesD);
-  //     setLoading(false);
-
-  //   }
-  //   fetchData();
-  // },[])
-
-  // const handleChangeTopText = (event) => {
-  //   setTopText(event.target.value);
-  // };
-
-  // const handleChangeBottomText = (event) => {
-  //   setBottomText(event.target.value);
-  // };
-  
   // create one handler for the textchanges.
   const handleTextChange = (event) => {
-    setFormData(prevFormData => {
+    setFormData((prevFormData) => {
       return {
         ...prevFormData,
         [event.target.name]: event.target.value,
-      }
-    })
-  }
-  
-  const handleSubmit = (event) => { 
+      };
+    });
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData)
-    console.log('submit')
-  }
+    console.log(formData);
+    console.log("submit");
+  };
 
   return (
     <>
@@ -114,6 +94,7 @@ const Main = () => {
         </div>
       </form>
       {/* PICTURE GENERATOR */}
+      {loading && <h3>LOADING IMAGES</h3> }
       <div className="main-image-area">
         <h3 className="main-image-top-text">{formData.topText}</h3>
         {/* <h3 className="main-image-top-text">{topText}</h3> */}
